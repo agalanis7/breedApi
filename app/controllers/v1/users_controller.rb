@@ -19,17 +19,26 @@ class V1::UsersController < ApplicationController
     end
 
     def destroy
-        @user = User.where(id: params[:id]).first_name
-        if user.destroy
+        @user = User.find(params[:id])
+        if @user.destroy
             head(:ok)
         else
             head(:unprocessable_entity)
+        end
     end
 
+    def update
+        @user = User.find(params[:id])
+        if @user.update_attributes(user_params)
+            render json: {status: 'SUCCESS', message: 'Updated user'}
+        else
+            render json: {status: 'ERROR', message: 'User not updated'}
+        end
+    end 
     private
 
     def user_params
         params.require(:user).permit(:first_name, :last_name, :email)
     end
-end
+
 end
