@@ -1,4 +1,7 @@
-class V1::UsersController < ApplicationController
+class V1::UsersController < ActionController::API
+
+#unitialized constant UsersController
+
 
 def index
     @users = User.all
@@ -33,7 +36,7 @@ def create
         end
       end
     end
-end
+
 
 def destroy
     @user = User.find(params[:id])
@@ -57,4 +60,5 @@ end
     def user_params
         params.require(:user).permit(:first_name, :last_name, :email)
     end
+  end
 
