@@ -1,7 +1,10 @@
-class V1::UsersController < ActionController::API
+module Api
+module V1
+class UsersController < ActionController::API
+  include ActionController::MimeResponds
 
 #unitialized constant UsersController
-
+s
 
 def index
     @users = User.all
@@ -61,4 +64,4 @@ end
         params.require(:user).permit(:first_name, :last_name, :email)
     end
   end
-
+end
